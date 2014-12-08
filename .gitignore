@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+public
+.tmp
+.idea
+.sass-cache
+client/bower_components
+dist
+config/appkey.js
+public/log.txt
+public/voice
