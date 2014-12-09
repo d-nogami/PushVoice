@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/voice', function(req, res) {
+router.post('/api/voice', function(req, res) {
     uploadFile(req, res);
 });
 

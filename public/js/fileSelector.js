@@ -4,7 +4,7 @@ angular.module('consoleApp')
 
         return {
             restrict: 'E',
-            template: '<form action="/voice" enctype="multipart/form-data" method="post">' +
+            template: '<form action="/api/voice" enctype="multipart/form-data" method="post">' +
                 '<input type="file" name="file" multiple="multiple" id="file" style="display: none;">' +
                 '<div class="input-group" style="display: flex;">' +
                     '<div class="input-group">' +
