@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="consoleApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Control Console</title>
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/console.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/angular-1.3.6.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mainController.js"></script>
+    <script src="js/fileSelector.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Console</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container top-container">
+        <div class="page-header">
+            <h2>Upload Voice File</h2>
+        </div>
+        <file-selector></file-selector>
+    </div>
+
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Uploaded Files</h2>
+        </div>
+        <button type="button" class="btn btn-primary margin-button" ng-click="updateVoiceList()">Update</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Key</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td><a ng-href="{{item.url}}" target="_blank">{{item.url}}</a></td>
+                    <td>{{item.key}}</td>
+                    <td>{{item.created}}</td>
+                    <td><button class="btn btn-danger" ng-click="tryDeleteVoice(item)">delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Registration GMC IDs</h2>
+        </div>
+        <button type="button" class="btn btn-primary margin-button" ng-click="updateIdList()">Update</button>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="rid in rids">
+                <td>{{rid.registrationId}}</td>
+                <td>{{rid.created}}</td>
+                <td><button class="btn btn-danger" ng-click="tryDeleteId(rid)">delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Register GMC ID</h2>
+        </div>
+        <div class="input-group" style="display: flex;">
+            <div class="input-group">
+                <input type="text" class="form-control" id="registerId" ng-model="registrationId">
+                <span class="input-group-btn">
+                    <button id="selectFile" class="btn btn-primary" type="button" ng-click="uploadRegistrationId()">Register</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer console-footer">
+        <div class="container">
+            <p class="text-muted">Copyright &copy; 2014 Daiki Nogami All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

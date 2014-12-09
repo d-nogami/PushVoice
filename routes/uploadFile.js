@@ -1,11 +1,18 @@
+'use strict';
+
 var uploadFile = function(req, res) {
     var formidable = require('formidable');
     var fs = require('fs');
+    var util = require('../lib/util');
     var form = new formidable.IncomingForm();
     form.uploadDir = "./public/voice";
     form.encoding = 'binary';
 
     form.parse(req, function (err, fields, files) {
+
+        if (files.file.size > 10000000) {
+            return res.send(500, 'File size is too large.');
+        }
 
         var oldPath = './' + files.file._writeStream.path;
         var newPath = './' + files.file._writeStream.path + '-' + files.file.name;
@@ -30,12 +37,13 @@ var uploadFile = function(req, res) {
             DB.create(newItem, function (err, item) {
                 if (err) { return res.send(500, err); }
 
-//                var pushNotification = require('../../lib/pushNotification');
-//                pushNotification.sendMessage(item.url);
+                var pushNotification = require('../lib/pushNotification');
+                pushNotification.sendMessage(item.url);
 
-                res.writeHead(200, {'content-type': 'text/html'});
-                res.write('received upload:\n\n');
-                return res.send();
+                // Set latest item
+                util.setLatestVoice(item);
+
+                return res.redirect('/console');
             });
         });
     });

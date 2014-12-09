@@ -1,6 +1,6 @@
 var path = require('path');
-
-var all = {
+var _ = require('lodash');
+var common = {
     env: process.env.NODE_ENV,
 
     // Root path of server
@@ -15,11 +15,24 @@ var all = {
             db: {
                 safe: true
             }
-        },
-        uri: 'mongodb://localhost/pushvoice'
+        }
     }
 
 };
 
+var production = {
+    mongo: {
+        uri: 'mongodb://localhost/pushvoice'
+    }
+}
+
+var development = {
+    mongo: {
+        uri: 'mongodb://localhost/pushvoice'
+    }
+}
+
+var env = process.env.NODE_ENV === 'production' ? production : development;
+
 // Expose app
-module.exports = all;
+module.exports = _.merge(common, env || {});

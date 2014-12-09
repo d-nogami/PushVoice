@@ -36,8 +36,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/console', require('./console'));
 app.use('/api/voice', require('./api/voice'));
 app.use('/api/register', require('./api/register'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

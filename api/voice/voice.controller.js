@@ -8,6 +8,7 @@
 'use strict';
 
 var fs = require('fs');
+var util = require('../../lib/util');
 var debugLog = require('../../lib/debugLog');
 var DB = require('./voice.model');
 
@@ -27,6 +28,12 @@ exports.show = function(req, res) {
         return res.json(item);
     });
 };
+
+// Get latest item
+exports.latest = function(req, res) {
+    var item = util.getLatestVoice();
+    return res.json(item);
+}
 
 // Deletes a item from the DB and storage
 exports.destroy = function(req, res) {
