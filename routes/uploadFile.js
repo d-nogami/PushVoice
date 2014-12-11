@@ -10,10 +10,15 @@ var uploadFile = function(req, res) {
 
     form.parse(req, function (err, fields, files) {
 
+        if (err) {
+            return res.send(500, 'Something is wrong while parse form.');
+        }
+
         if (files.file.size > 10000000) {
             return res.send(500, 'File size is too large.');
         }
 
+        var name = fields.name ? fields.name : 'Unknown';
         var oldPath = './' + files.file._writeStream.path;
         var newPath = './' + files.file._writeStream.path + '-' + files.file.name;
 
@@ -32,13 +37,14 @@ var uploadFile = function(req, res) {
             var newItem = {
                 path: newPath,
                 url: newPath.substr(newPath.indexOf('public') + 'public'.length),
+                name: name,
                 key: uuid.v1()
             }
             DB.create(newItem, function (err, item) {
                 if (err) { return res.send(500, err); }
 
                 var pushNotification = require('../lib/pushNotification');
-                pushNotification.sendMessage(item.url);
+                pushNotification.sendMessage(item.url, item.name);
 
                 // Set latest item
                 util.setLatestVoice(item);

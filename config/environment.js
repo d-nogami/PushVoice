@@ -1,5 +1,7 @@
 var path = require('path');
 var _ = require('lodash');
+var keys = require('./appkey');
+
 var common = {
     env: process.env.NODE_ENV,
 
@@ -22,13 +24,13 @@ var common = {
 
 var production = {
     mongo: {
-        uri: 'mongodb://localhost/pushvoice'
+        uri: keys.proddbpath
     }
 }
 
 var development = {
     mongo: {
-        uri: 'mongodb://localhost/pushvoice'
+        uri: keys.devdbpath
     }
 }
 

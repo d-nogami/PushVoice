@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var VoiceSchema = new Schema({
     path: { type: String, required: true, unique: true },
     url: { type: String, required: true },
+    name: { type: String, required: true },
     key: {type: String, required: true},
     created: { type: Date, 'default': Date.now }
 });

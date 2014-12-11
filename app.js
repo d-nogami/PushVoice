@@ -5,7 +5,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var basicAuth = require('basic-auth-connect');
 var config = require('./config/environment');
+var keys = require('./config/appkey');
 var routes = require('./routes/index');
 
 
@@ -29,6 +31,9 @@ if (app.get('env') == 'production') {
 } else {
     app.use(logger('dev'));
 }
+
+//basic authentication
+app.use(basicAuth(keys.name, keys.pass));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

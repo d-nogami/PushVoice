@@ -49,6 +49,7 @@
             <thead>
                 <tr>
                     <th>URL</th>
+                    <th>Name</th>
                     <th>Key</th>
                     <th>Date</th>
                     <th></th>
@@ -57,6 +58,7 @@
             <tbody>
                 <tr ng-repeat="item in items">
                     <td><a ng-href="{{item.url}}" target="_blank">{{item.url}}</a></td>
+                    <td>{{item.name}}</td>
                     <td>{{item.key}}</td>
                     <td>{{item.created}}</td>
                     <td><button class="btn btn-danger" ng-click="tryDeleteVoice(item)">delete</button></td>

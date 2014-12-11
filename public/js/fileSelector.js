@@ -5,6 +5,8 @@ angular.module('consoleApp')
         return {
             restrict: 'E',
             template: '<form action="/api/voice" enctype="multipart/form-data" method="post">' +
+                '<span>Name: </span>' +
+                '<input type="text" name="name" class="form-control" style="display: inline; width: inherit; margin: 5px 0;">' +
                 '<input type="file" name="file" multiple="multiple" id="file" style="display: none;">' +
                 '<div class="input-group" style="display: flex;">' +
                     '<div class="input-group">' +
@@ -14,7 +16,7 @@ angular.module('consoleApp')
                             '</span>' +
                     '</div>' +
                 '</div>' +
-                '<input type="submit" value="Upload" id="uploadButton" class="btn btn-primary margin-button" disabled>' +
+                '<input type="submit" value="Upload" id="uploadButton" class="btn btn-primary margin-button" style="display: block" disabled>' +
                 '</form>',
             replace: true,
             link: function (scope, element) {
