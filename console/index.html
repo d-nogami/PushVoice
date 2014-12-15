@@ -53,6 +53,7 @@
                     <th>Key</th>
                     <th>Date</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +62,8 @@
                     <td>{{item.name}}</td>
                     <td>{{item.key}}</td>
                     <td>{{item.created}}</td>
-                    <td><button class="btn btn-danger" ng-click="tryDeleteVoice(item)">delete</button></td>
+                    <td><button class="btn btn-info" ng-click="fireVoice(item)">Push</button></td>
+                    <td><button class="btn btn-danger" ng-click="tryDeleteVoice(item)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -78,13 +80,15 @@
                 <th>ID</th>
                 <th>Date</th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="rid in rids">
                 <td>{{rid.registrationId}}</td>
                 <td>{{rid.created}}</td>
-                <td><button class="btn btn-danger" ng-click="tryDeleteId(rid)">delete</button></td>
+                <td><button class="btn btn-info" ng-click="fireTonTon(rid)">TonTon</button></td>
+                <td><button class="btn btn-danger" ng-click="tryDeleteId(rid)">Delete</button></td>
             </tr>
             </tbody>
         </table>

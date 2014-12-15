@@ -44,6 +44,7 @@ app.use('/', routes);
 app.use('/console', require('./console'));
 app.use('/api/voice', require('./api/voice'));
 app.use('/api/register', require('./api/register'));
+app.use('/api/gcm', require('./api/gcm'));
 
 
 // catch 404 and forward to error handler

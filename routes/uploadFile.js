@@ -44,7 +44,12 @@ var uploadFile = function(req, res) {
                 if (err) { return res.send(500, err); }
 
                 var pushNotification = require('../lib/pushNotification');
-                pushNotification.sendMessage(item.url, item.name);
+                var data = {
+                    type: 'voice',
+                    url: item.url,
+                    name: item.name
+                }
+                pushNotification.sendMessageAll(data);
 
                 // Set latest item
                 util.setLatestVoice(item);

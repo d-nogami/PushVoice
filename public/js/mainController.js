@@ -151,11 +151,44 @@ consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
         return deferred.promise;
     }
 
+
+    function fireVoice (item) {
+        var key = item.key;
+        var url = 'api/gcm/voice/' + key;
+
+        $.ajax({
+            dataType: 'json',
+            url: url
+        }).then(function (result) {
+            console.log('Succeed[fireVoice] code:' + result);
+        }, function (reason) {
+            console.log('Error[fireVoice]:' + reason);
+        });
+    }
+
+    function fireTonTon (rid) {
+        var url = 'api/gcm/tonton';
+        var id = rid.registrationId;
+        var name = 'Test';
+
+        $.ajax({
+            dataType: 'json',
+            url: url + "?name=" + name + "&id=" + id
+        }).then(function (result) {
+            console.log('Succeed[fireTonTon] code:' + result);
+        }, function (reason) {
+            console.log('Error[fireTonTon]:' + reason);
+        });
+    }
+
+
     $scope.updateVoiceList = updateVoiceList;
     $scope.tryDeleteVoice = tryDeleteVoice;
     $scope.updateIdList = updateIdList;
     $scope.tryDeleteId = tryDeleteId;
     $scope.uploadRegistrationId = uploadRegistrationId;
+    $scope.fireVoice = fireVoice;
+    $scope.fireTonTon = fireTonTon;
 
     initialize();
 }]);
