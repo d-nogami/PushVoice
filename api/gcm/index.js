@@ -1,6 +1,12 @@
+/*
+ * Copyright (C) 2014 Daiki Nogami.
+ * All rights reserved.
+ */
+
 'use strict';
 
 var express = require('express');
+var logger = require('../../lib/debugLog');
 var pushNotification = require('../../lib/pushNotification');
 var util = require('../../lib/util');
 var registerIdDB = require('../register/register.model.js');
@@ -16,8 +22,14 @@ router.get('/tonton', function (req, res) {
 
     if (req.query.id) {
         registerIdDB.findOne({registrationId: req.query.id}, function (err, item) {
-            if (err) { return handleError(res, err); }
-            if (!item) { return res.status(404).end(); }
+            if (err) {
+                logger.error('[gcm/index.js] Registration Id DB findOne error: ' + err);
+                return handleError(res, err);
+            }
+            if (!item) {
+                logger.warn('[gcm/index.js] Registration Id DB no item');
+                return res.status(404).end();
+            }
             pushNotification.sendMessageOne(data, item.registrationId);
             res.writeHead(200);
             res.end();
@@ -49,8 +61,14 @@ router.get('/voice', function (req, res) {
 
 router.get('/voice/:id', function (req, res) {
     voiceDB.findOne({key: req.params.id}, function (err, item) {
-        if (err) { return handleError(res, err); }
-        if (!item) { return res.status(404).end(); }
+        if (err) {
+            logger.error('[gcm/index.js] Voice DB findOne error: ' + err);
+            return handleError(res, err);
+        }
+        if (!item) {
+            logger.warn('[gcm/index.js] Voice DB no item');
+            return res.status(404).end();
+        }
         var data = {
             type: 'voice',
             url: item.url,

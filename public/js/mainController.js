@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2014 Daiki Nogami.
+ * All rights reserved.
+ */
+
 var consoleApp = angular.module('consoleApp', []);
 
 consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
@@ -181,6 +186,19 @@ consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
         });
     }
 
+    function clearLog (target) {
+        var url = 'api/log/' + target;
+
+        $.ajax({
+            type: 'DELETE',
+            url: url
+        }).then(function (result) {
+            console.log(result);
+        }, function (reason) {
+            console.log('Error[clearLog]:' + reason);
+        });
+    }
+
 
     $scope.updateVoiceList = updateVoiceList;
     $scope.tryDeleteVoice = tryDeleteVoice;
@@ -189,6 +207,7 @@ consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
     $scope.uploadRegistrationId = uploadRegistrationId;
     $scope.fireVoice = fireVoice;
     $scope.fireTonTon = fireTonTon;
+    $scope.clearLog = clearLog;
 
     initialize();
 }]);

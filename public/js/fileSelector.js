@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2014 Daiki Nogami.
+ * All rights reserved.
+ */
+
 angular.module('consoleApp')
     .directive('fileSelector', function () {
         'use strict';

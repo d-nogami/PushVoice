@@ -1,3 +1,8 @@
+<!--
+ Copyright (C) 2014 Daiki Nogami.
+ All rights reserved.
+-->
+
 <!DOCTYPE html>
 <html ng-app="consoleApp">
 <head lang="en">
@@ -106,6 +111,30 @@
                 </span>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Log</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Log</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a target="_blank" href="/accessLog.txt">Access Log</a></td>
+                <td align="right"><button class="btn btn-danger" ng-click="clearLog('access')">Clear</button></td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="/internalLog.txt">Internal Log</a></td>
+                <td align="right"><button class="btn btn-danger" ng-click="clearLog('access')">Clear</button></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     <footer class="footer console-footer">

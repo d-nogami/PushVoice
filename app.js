@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2014 Daiki Nogami.
+ * All rights reserved.
+ */
+
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -26,7 +31,7 @@ app.set('view engine', 'jade');
 //log output
 if (app.get('env') == 'production') {
     var fs = require('fs');
-    var stream = fs.createWriteStream(__dirname + '/public/log.txt', { flags: 'a' });
+    var stream = fs.createWriteStream(__dirname + '/public/accessLog.txt', { flags: 'a' });
     app.use(logger('combined', { stream: stream }));
 } else {
     app.use(logger('dev'));
@@ -45,6 +50,7 @@ app.use('/console', require('./console'));
 app.use('/api/voice', require('./api/voice'));
 app.use('/api/register', require('./api/register'));
 app.use('/api/gcm', require('./api/gcm'));
+app.use('/api/log', require('./api/log'));
 
 
 // catch 404 and forward to error handler
