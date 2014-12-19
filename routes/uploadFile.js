@@ -12,7 +12,7 @@ var uploadFile = function(req, res) {
     var logger = require('../lib/debugLog');
     var form = new formidable.IncomingForm();
     form.uploadDir = "./public/voice";
-    form.encoding = 'binary';
+    form.encoding = 'utf-8';
 
     form.parse(req, function (err, fields, files) {
 

@@ -9,7 +9,7 @@ angular.module('consoleApp')
 
         return {
             restrict: 'E',
-            template: '<form action="/api/voice" enctype="multipart/form-data" method="post">' +
+            template: '<form action="/api/voice" enctype="multipart/form-data" method="post" accept-charset="UTF-8">' +
                 '<span>Name: </span>' +
                 '<input type="text" name="name" class="form-control" style="display: inline; width: inherit; margin: 5px 0;">' +
                 '<input type="file" name="file" multiple="multiple" id="file" style="display: none;">' +
