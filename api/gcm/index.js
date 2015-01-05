@@ -41,6 +41,17 @@ router.get('/tonton', function (req, res) {
     }
 });
 
+router.get('/sample', function (req, res) {
+    var sample = util.getSampleVoice();
+    if (sample.url) {
+        pushNotification.sendMessageAll(sample);
+        res.writeHead(200);
+        res.end();
+    } else {
+        res.writeHead(500);
+        res.end('No latest voice.');
+    }
+});
 
 router.get('/voice', function (req, res) {
     var latest = util.getLatestVoice();
