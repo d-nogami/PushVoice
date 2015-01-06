@@ -35,6 +35,9 @@ consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
 
     function updateIdList () {
         getIdList().then(function (rids) {
+            for (var i = 0; i < rids.length; i++) {
+                rids[i].from = 'debug';
+            }
             $scope.rids = rids;
         }, function (reason) {
             console.log('Error[updateVoiceList]:' + reason);
@@ -174,7 +177,7 @@ consoleApp.controller('mainCtrl', ['$scope', '$q', function ($scope, $q) {
     function fireTonTon (rid) {
         var url = 'api/gcm/tonton';
         var id = rid.registrationId;
-        var name = 'Test';
+        var name = rid.from || 'debug';
 
         $.ajax({
             dataType: 'json',

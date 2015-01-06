@@ -84,6 +84,7 @@
             <tr>
                 <th>ID</th>
                 <th>Date</th>
+                <th>From</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -92,6 +93,19 @@
             <tr ng-repeat="rid in rids">
                 <td>{{rid.registrationId}}</td>
                 <td>{{rid.created}}</td>
+                <td>
+                    <select ng-model="rid.from" class="form-control" style="width: 110px;">
+                        <option value="りかちゃん">りかちゃん</option>
+                        <option value="彩花">彩花</option>
+                        <option value="ぁぃぁぃ">ぁぃぁぃ</option>
+                        <option value="美玲">美玲</option>
+                        <option value="りななん">りななん</option>
+                        <option value="ひなた">ひなた</option>
+                        <option value="ぽーちゃん">ぽーちゃん</option>
+                        <option value="りったん">りったん</option>
+                        <option value="debug">debug</option>
+                    </select>
+                </td>
                 <td><button class="btn btn-info" ng-click="fireTonTon(rid)">TonTon</button></td>
                 <td><button class="btn btn-danger" ng-click="tryDeleteId(rid)">Delete</button></td>
             </tr>
