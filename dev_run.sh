@@ -5,4 +5,4 @@
 
 export NODE_ENV=development
 
-node --debug ./bin/www
+sudo node --debug ./bin/www

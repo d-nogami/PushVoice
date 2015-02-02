@@ -8,3 +8,4 @@ dist
 config/appkey.js
 public/*.txt
 public/voice
+public/sample

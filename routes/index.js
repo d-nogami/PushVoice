@@ -15,6 +15,13 @@ router.get('/', function (req, res) {
     );
 });
 
+router.get('/index.html', function (req, res) {
+    res.writeHead(200, {'content-type': 'text/html'});
+    res.end(
+        '<h1>Working!</h1>'
+    );
+});
+
 
 router.post('/api/voice', function(req, res) {
     uploadFile(req, res);
