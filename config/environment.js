@@ -14,9 +14,6 @@ var common = {
     // Root path of server
     root: path.normalize(__dirname + '/../..'),
 
-    // Server port
-    port: process.env.PORT || 80,
-
     // MongoDB connection options
     mongo: {
         options: {
@@ -31,13 +28,17 @@ var common = {
 var production = {
     mongo: {
         uri: keys.proddbpath
-    }
+    },
+    // Server port
+    port: 9000
 }
 
 var development = {
     mongo: {
         uri: keys.devdbpath
-    }
+    },
+    // Server port
+    port: 80
 }
 
 var env = process.env.NODE_ENV === 'production' ? production : development;
